@@ -1,0 +1,45 @@
+{% load static %}
+<nav class="navbar navbar-light navbar-expand-xl fixed-top bg-white shadow">
+    <div class="container"><a class="navbar-brand" href="{% url 'index' %}" style="font-family: Adamina, serif;"><strong>Machine Work X</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div
+            class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav flex-grow-1" style="font-family: Adamina, serif;">
+                <li class="nav-item" role="presentation"></li>
+                <li class="nav-item" role="presentation"></li>
+                <li class="nav-item" role="presentation"></li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Capabilities</a>
+                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                </li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Industries</a>
+                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                </li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Resources</a>
+                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                </li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Supplies</a>
+                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                </li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="untitled-4.html">Become a Partner</a></li>
+                <li class="nav-item" role="presentation"></li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+        <li>
+          <a class="btn btn-primary" role="button" href="{%url 'login' %}" style="margin: 15px;font-family: Adamina, serif;">Log In &nbsp;<i class="fa fa-user"></i></a></li>
+        <li>
+
+          <div class="dropdown">
+            <button class="mt-3 btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Register With Us !
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="{%url 'registercustomer' %}">As a Customer</a>
+              <a class="dropdown-item" href="{% url 'registermanufacturer' %}">As a Manufacturer</a>
+            </div>
+          </div>
+          </li>
+    </ul>
+
+
+          </div>
+    </div>
+</nav>

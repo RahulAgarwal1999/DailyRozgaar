@@ -1,0 +1,64 @@
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media (min-width: 300px) {
+  .text-center {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .text-center {
+    font-size: 22px;
+  }
+}
+
+.card-columns {
+  margin-top: -53px;
+}
+
+#form {
+  width: 800px;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  #form {
+    width: 550px;
+  }
+}
+
+@media (min-width: 768px) {
+  #facilities {
+    padding-left: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  #form {
+    width: 415px;
+    margin-top: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  #facilities {
+    padding-left: 10px;
+  }
+}
+
+@media (min-width: 300px) {
+  #facilities {
+    width: 200px;
+  }
+}
+

@@ -1,0 +1,8 @@
+*.pyc
+db.sqlite3
+accounts/migrations/*
+accounts/_pycache_/
+pages/migrations/*
+pages/_pycache_/
+
+media/*
