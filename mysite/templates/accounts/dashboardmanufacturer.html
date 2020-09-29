@@ -1,0 +1,173 @@
+{% extends 'manufacturerbase.html' %}
+{% load static %}
+{% block content %}
+
+
+            <div class="topforman" id="content">
+              {% include 'partials/_alerts.html' %}
+
+            <div class="card" style="margin: 20px;">
+                <div class="card-body"><small class="form-text text-muted" style="width: 350px;font-size: 15px;margin-top: 0px;margin-bottom: 10px;"><strong>What's your work status this week?&nbsp;</strong></small>
+                  <form method="POST">
+
+                    {% csrf_token %}
+                    <!-- <div class="dropdown" style="width: 340px;"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" onchange="submit()" style="width: 170px;">Select Your Status&nbsp;</button>
+                        <div class="dropdown-menu" role="menu" style="margin: 0px;margin-top: 2px;width: 175px;font-family: Nunito, sans-serif;font-size: 14px;"><a class="dropdown-item" role="presentation" href="#">Looking For Work</a><a class="dropdown-item" role="presentation" href="#">Neutral</a><a class="dropdown-item" role="presentation" href="#">At Capacity</a></div>
+                    </div> -->
+                    <select style="width: 250px;" onchange="submit()" name="status" class="form-control bg-primary text-white">
+
+                      <option class='bg-light text-dark' disabled='true' selected>-- Mention Your Status --</option>
+                      <option class='bg-light text-dark'>Looking For Work</option>
+                      <option class='bg-light text-dark'>Neutral</option>
+                      <option class='bg-light text-dark'>At Capacity</option>
+
+
+                    </select>
+                    </form>
+                    <p></p>
+                    <p><strong>Current Status : </strong>{{ DataAll.status }}</p>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <h3 class="text-dark mb-4"><strong>RFQ</strong>&nbsp;<strong>Offers Received</strong></h3>
+            </div>
+
+            {% if list %}
+            {% for li in list %}
+
+
+            {% if li.rejecter %}
+            <div class="card" style="margin: 20px;padding: 10px;margin-bottom: 20px;margin-top: 20px;">
+
+                <div class="card-body" style="padding: 10px;">
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><small class="form-text text-muted"><strong>RFQ ID</strong></small><small class="form-text text-muted"><strong>{{ li.unique_id }}</strong></small></div>
+                        <div class="col">
+                          <small class="form-text text-muted" style="font-size: 14px;"><strong>Attached RFQ</strong></small><small class="form-text text-muted" style="font-size: 13px;"><a href="{{ li.file.url }}" download>{{ li.file }}</a></small>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Process</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ li.process }}</small></div>
+                        <div class="col"><small class="form-text text-muted" style="font-size: 14;"><strong>Material</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ li.material }}</small></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Additional Details</strong></small><small class="form-text text-justify text-muted" style="font-size: 13px;">{{ li.adddetails }}<br></small></div>
+
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Preferences</strong><br></small></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><small class="form-text text-muted" style="font-size: 14;"><strong>Quality</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ li.quality }}</small></div>
+                        <div class="col"><small class="form-text text-muted" style="font-size: 14;"><strong>Nearest to My Location</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ li.nearestloc }}</small></div>
+                        <div class="col"><small class="form-text text-muted" style="font-size: 14;"><strong>Shortest Lead Time</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ li.leadtime }}</small></div>
+                        <div class="col"><small class="form-text text-muted" style="font-size: 14;"><strong>Lowest Pricing</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ li.pricing }}</small></div>
+                    </div>
+                </div>
+                <div class="row" style="width: 240px;margin-right: 0px;margin-left: 0px;">
+                    <div class="col" style="width: 100px;"><a class="btn btn-success btn-lg" role="button" style="height: 38px;font-size: 16px;width: 120px;" disabled>Quote For</a></div>
+                    <div class="col" style="width: 100px;"><button class="ml-2 btn btn-danger" style="width: 220px;" disabled>You have Rejected this</button>
+
+                    </div>
+                    <div class="pt-2 col inline" style="text-align:right;">
+                      <div class="form-text text-muted" style="font-size: 16px;">
+                        <strong class="pt-2 text-dark">STATUS : {{ li.status }}  </strong>
+                        <small style="font-size:11px;">* If accepted by customer then "Done", in any other case "None"</small>
+                      </div>
+                    </div>
+                </div>
+
+
+                {% else %}
+                <div class="card" style="margin: 20px;padding: 10px;margin-bottom: 20px;margin-top: 20px;">
+
+                    <div class="card-body" style="padding: 10px;">
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col"><small class="form-text text-muted"><strong>RFQ ID</strong></small><small class="form-text text-muted"><strong>{{ li.unique_id }}</strong></small></div>
+                            <div class="col">
+                              <small class="form-text text-muted" style="font-size: 14px;"><strong>Attached RFQ</strong></small><small class="form-text text-muted" style="font-size: 13px;"><a href="{{ li.file.url }}" download>{{ li.file }}</a></small>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Process</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ li.process }}</small></div>
+                            <div class="col"><small class="form-text text-muted" style="font-size: 14;"><strong>Material</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ li.material }}</small></div>
+                        </div>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Additional Details</strong></small><small class="form-text text-justify text-muted" style="font-size: 13px;">{{ li.adddetails }}<br></small></div>
+
+                        </div>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Preferences</strong><br></small></div>
+                        </div>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col"><small class="form-text text-muted" style="font-size: 14;"><strong>Quality</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ li.quality }}</small></div>
+                            <div class="col"><small class="form-text text-muted" style="font-size: 14;"><strong>Nearest to My Location</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ li.nearestloc }}</small></div>
+                            <div class="col"><small class="form-text text-muted" style="font-size: 14;"><strong>Shortest Lead Time</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ li.leadtime }}</small></div>
+                            <div class="col"><small class="form-text text-muted" style="font-size: 14;"><strong>Lowest Pricing</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ li.pricing }}</small></div>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 240px;margin-right: 0px;margin-left: 0px;">
+                        <div class="col" style="width: 100px;"><a class="btn btn-success btn-lg" role="button" data-toggle="modal" href="#sendquote" style="height: 38px;font-size: 16px;width: 100px;">Quote For</a></div>
+                        <form method="POST">
+                          {% csrf_token %}
+                          <input type="hidden" name="unique_id" value="{{li.unique_id}}">
+                          <div class="col" style="width: 100px;"><button class="btn btn-danger" name='reject' type="submit" style="width: 100px;">Reject</button>
+
+                        </form>
+
+
+                            <div class="modal fade" role="dialog" tabindex="-1" id="sendquote" style="margin: 10px;">
+                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4><strong>Send Quote&nbsp;</strong></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <form method="POST">
+                                              {% csrf_token %}
+                                                <div class="form-row" style="margin-bottom: 5px;">
+                                                    <div class="col">
+                                                      <input class="form-control" type="text" name='estimatecost' placeholder="Estimate Cost ( In Rupees )" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row" style="margin-bottom: 5px;">
+                                                    <div class="col">
+                                                      <input class="form-control" type="text" name='estimatedays' placeholder="Estimate Duration ( In number of days )" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row" style="margin-bottom: 5px;">
+                                                    <div class="col">
+                                                      <input class="form-control" type="text" name='moreinfo' placeholder="Additional Information" required>
+                                                    </div>
+                                                </div>
+                                                  <input type="hidden" name="unique_id" value="{{li.unique_id}}">
+                                                <button name='submitoffer' class="btn btn-primary" type="submit">SEND</button>
+                                              </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="pt-2 col inline" style="text-align:right;">
+                          <div class="form-text text-muted" style="font-size: 16px;">
+                            <strong class="pt-2 text-dark">STATUS : {{ li.status }}</strong>
+                            <small style="font-size:11px;">* If accepted by customer then "Done", in any other case "None"</small>
+                          </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+
+
+            </div>
+            {% endfor %}
+            {% else %}
+            <p class="pl-4 pt-4"><strong>No RFQs offers recieved yet !</strong></p>
+            {% endif %}
+        </div>
+
+
+
+
+
+{% endblock %}

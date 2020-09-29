@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+    <!-- customer css -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/customer_bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Adamina">
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/simple-line-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome5-overrides.min.css' %}">
+    <style>
+      #blocker
+      {
+        margin-top: 80px;
+      }
+    </style>
+</head>
+
+<body id="page-top" style="font-family: Nunito, sans-serif;">
+
+    {% include 'partials/_navbar.html' %}
+    <div id="wrapper">
+
+      {% include 'partials/_customernavbar.html' %}
+
+      <div class="d-flex flex-column" id="content-wrapper">
+        {% block content %}
+        {% endblock %}
+
+
+        {% include 'partials/_customerfooter.html' %}
+      </div>
+
+      <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+
+
+
+
+
+    <!-- customer js -->
+    <script src="{% static 'js/jquery_c.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/customer_bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/c-bs-init.js' %}"></script>
+    <script src="{% static 'js/message.js' %}"></script>
+    <script src="{% static 'js/dashboard_c.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+{% load static %}
+<nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="job_board.html">
+                    <div class="sidebar-brand-icon rotate-n-15"></div>
+                    <div class="sidebar-brand-text mx-3" style="font-family: Nunito, sans-serif;font-weight: bold;">
+                      <span style="font-size: 16px;font-family: Nunito, sans-serif;font-weight: bold;">Machine work x</span>
+                    </div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation">
+
+                      <a class="nav-link" href="{% url 'dashboard' %}">
+                        <i class="fas fa-table" style="font-size: 14px;"></i>
+                        <span style="font-size: 14px;">Job Board</span>
+                      </a>
+
+                      <a class="nav-link" href="{% url 'currentjob' %}" style="font-size: 14px;">
+                        <i class="fas fa-list-ol" style="font-size: 14px;"></i>
+                        <span style="font-size: 14px;font-family: Nunito, sans-serif;">Complaints Recieved</span>
+                      </a>
+
+                    </li>
+                    <li
+                        class="nav-item" role="presentation"></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'accountsettingsmanufacturer' %}"><i class="fas fa-user-circle" style="font-size: 14px;"></i><span style="font-size: 14px;font-family: 'Nunito Sans', sans-serif;">Account Settings</span></a></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+            </div>
+</nav>

@@ -1,0 +1,88 @@
+{% extends 'customerbase.html' %}
+{% load static %}
+{% block content %}
+
+
+            <div id="content">
+
+            <div class="container-fluid mb-4" id='blocker'>
+                <h3 class="text-dark mb-4"><strong>Create RFQ</strong></h3>
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-body text-left">
+                        <form method="POST" enctype="multipart/form-data">
+                          {% include 'partials/_alerts.html' %}
+                          {% csrf_token %}
+                          <small class="form-text text-muted" style="margin-bottom: 10px;font-size: 16px;">
+                            <strong>What file types can I upload?&nbsp;&nbsp;</strong>
+
+                            <i class="fa fa-info-circle" data-toggle="tooltip" data-bs-tooltip="" data-placement="right" title="The accepted file formats are: ( 3D files like .igs, .iges, .stp, .step etc) ( 2D files like .dwg, .dxf etc) (.zip , .rar) ( PDFs and photos,good resolution) ">
+                            </i>
+                            <!-- <p></p> -->
+                            <small class="pl-2 text-muted" style="font-size: 12px;">In case of multiple files or file size exceeding 10 Mb, do compress into single folder before uploading</small>
+                            <!-- <br> -->
+                          </small>
+
+                          <!-- <p>gg</p> -->
+                            <input type="file" name='file' style="margin-bottom: 10px;" required>
+                                <div class="form-row">
+                                    <div class="col" style="margin-bottom: 10px;">
+                                      <small class="mt-4 form-text text-muted" style="font-size: 14px;">Process*</small>
+                                      <input class="form-control" type="text" placeholder="Turning, Milling etc." name="process" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col" style="margin-bottom: 10px;">
+                                      <small class="form-text text-muted" style="font-size: 14px;">Material*</small>
+                                      <input class="form-control" type="text" placeholder="Chrome Steel, AL6063-T6 etc." name='material' required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                      <small class="form-text text-muted" style="font-size: 14px;">Additional Details</small>
+                                      <textarea class="form-control" placeholder="Surface Treatment, tolerances and fits, surface finish etc." rows="3" name='adddetails' required>
+                                      </textarea>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="font-size: 14px;">Preferences*<br></th>
+                                                <th style="font-size: 14px;">Number the boxes i.e. 1,2,3,4<br></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="font-size: 14px;">Quality</td>
+                                                <td>
+                                                  <input class="form-control" type="text" minlength="1" maxlength="1" required="" pattern="[0-9]" style="width: 100px;" name='quality'>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size: 14px;">Nearest to My Location<br></td>
+                                                <td><input class="form-control" type="text" minlength="1" maxlength="1" required="" style="width: 100px;" name='nearestloc'></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size: 14px;">Shortest Lead Time<br></td>
+                                                <td><input class="form-control" type="text" minlength="1" maxlength="1" required="" style="width: 100px;" name='leadtime'></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size: 14px;">Lowest Pricing<br></td>
+                                                <td><input class="form-control" type="text" minlength="1" maxlength="1" required="" style="width: 100px;" name='pricing'></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <button class="btn btn-primary text-uppercase" type="submit" style="width: 125px;background-color: rgb(37,77,192);">Submit</button>
+                              </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- </div> -->
+
+
+
+
+{% endblock %}
