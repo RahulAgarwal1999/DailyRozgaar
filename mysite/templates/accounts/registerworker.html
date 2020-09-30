@@ -4,9 +4,12 @@
     <div class="row register-form">
 
         <div class="col-md-8 offset-md-2" style="font-family: Adamina, serif;padding-top: 80px;">
-            <form class="text-sm-center text-md-center text-lg-center text-xl-center shadow-sm custom-form" style="font-family: Adamina, serif;padding: 55px;margin: 30px;">
+            <div class=" uk-card rounded text-sm-center text-md-center text-lg-center text-xl-center shadow-sm custom-form" style=" font-family: Adamina, serif;padding: 25px;margin: 10px;">
                 <h1 style="margin-bottom: 20px;">Create an Account</h1>
 
+
+                <form class=""  method="POST">
+                  {% csrf_token %}
 
                 <div class="form-row form-group">
                     <div class="col-sm-4 label-column">
@@ -111,8 +114,10 @@
                   <label class="form-check-label" for="formCheck-1">I've read and accept the terms and conditions</label>
                 </div>
 
-                <button class="btn btn-light submit-button">Register As a Worker !</button>
+                <button class="btn btn-light submit-button" style="background:#F99615;">Register As a Worker !</button>
               </form>
+
+            </div>
         </div>
       </div>
 {% endblock %}
