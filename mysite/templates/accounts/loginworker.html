@@ -15,7 +15,16 @@
             <div class="form-group">
               <button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(40,167,69);">Log In</button>
             </div>
-            <a class="forgot">Forgot your password?</a>
+            <div class="row">
+              <div class="col col-md-6">
+                <a href="{% url 'registerworker' %}" id='loginanchors' style="font-size:12px;">Not Registered as a Worker? Register here</a>
+              </div>
+              <div class="col col-md-6">
+                <a href='#' id='loginanchors' style="font-size:12px;text-align:center;">Forgot your password?</a>
+              </div>
+
+            </div>
+
           </form>
     </div>
 {% endblock %}

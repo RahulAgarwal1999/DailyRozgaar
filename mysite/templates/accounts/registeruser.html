@@ -7,7 +7,6 @@
             <form class="text-sm-center text-md-center text-lg-center text-xl-center shadow-sm custom-form" style="font-family: Adamina, serif;padding: 55px;margin: 30px;">
                 <h1 style="margin-bottom: 20px;">Create an Account</h1>
 
-
                 <div class="form-row form-group">
                     <div class="col-sm-4 label-column">
                       <label for="first_name" class="col-form-label">First Name</label>
@@ -37,32 +36,13 @@
                 </div>
 
 
-
-                <div class="form-row form-group">
-                    <div class="col-sm-4 label-column">
-                      <label class="col-form-label" for="company_name">Company Name (optional)&nbsp;</label>
-                    </div>
-                    <div class="col-sm-6 input-column">
-                      <input class="form-control" name='company_name' type="text">
-                    </div>
-                </div>
-
-
                 <div class="form-row form-group">
                     <div class="col-sm-4 label-column">
                       <label class="col-form-label" for="number">Mobile No</label>
                     </div>
                     <div class="col-sm-6 input-column">
-                      <input name='number1' class='form-control' type="text" title="Number should be ten digits" pattern="[1-9]{1}[0-9]{9}">
-                    </div>
-                </div>
-
-                <div class="form-row form-group">
-                    <div class="col-sm-4 label-column">
-                      <label class="col-form-label" for="code">Zip Code</label>
-                    </div>
-                    <div class="col-sm-6 input-column">
-                      <input name='code' class="form-control" type="text">
+                      <input name='number2' class='form-control' type="text" title="Number should be ten digits" pattern="[1-9]{1}[0-9]{9}">
+                      <!-- <input class="form-control" name='number2' type="text"> -->
                     </div>
                 </div>
 
@@ -75,6 +55,7 @@
                       <input class="form-control" type="email" name='email'>
                     </div>
                 </div>
+
 
 
                 <div class="form-row form-group">
@@ -91,8 +72,8 @@
                       <label class="col-form-label" for="password">Confirm Password</label>
                     </div>
                     <div class="col-sm-6 input-column">
-                      <input name='password2' class="form-control" type="password" id='mypassM' required>
-                      <input type="checkbox" class="form-check-input" onclick="myPasswordM()">
+                      <input name='password2' class="form-control" type="password" id='mypassC' required>
+                      <input type="checkbox" class="form-check-input" onclick="myPasswordC()">
                       <label id='passvis' class="mt-3 pl-1">Show Password</label>
                     </div>
                 </div>
@@ -102,7 +83,7 @@
                   <label class="form-check-label" for="formCheck-1">I've read and accept the terms and conditions</label>
                 </div>
 
-                <button class="btn btn-light submit-button">Register As a Manufacturer !</button>
+                <button value='Register' class="btn btn-light submit-button">Register As a Userr</button>
               </form>
         </div>
       </div>

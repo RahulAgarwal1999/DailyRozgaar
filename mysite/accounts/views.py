@@ -1,11 +1,14 @@
 from django.shortcuts import render,redirect
 
 # Create your views here.
-def registercustomer(request):
-    return render(request,'accounts/registercustomer.html')
+def registeruser(request):
+    return render(request,'accounts/registeruser.html')
 
-def registermanufacturer(request):
-    return render(request,'accounts/registermanufacturer.html')
+def registerworker(request):
+    return render(request,'accounts/registerworker.html')
 
-def login(request):
-    return render(request,'accounts/login.html')
+def loginworker(request):
+    return render(request,'accounts/loginworker.html')
+
+def loginuser(request):
+    return render(request,'accounts/loginuser.html')
