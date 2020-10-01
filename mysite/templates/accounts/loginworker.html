@@ -2,7 +2,9 @@
 {% load static %}
 {% block content %}
     <div class="login-clean" style="background-color: rgb(239,248,255);padding-bottom: 80px;">
-        <form style="font-family: Adamina, serif;margin-top: 100px;">
+        <form action="{% url 'loginworker' %}" method='POST'  style="font-family: Adamina, serif;margin-top: 100px;">
+          {% include 'partials/_alerts.html' %}
+          {% csrf_token %}
             <div class="illustration">
                 <h1 style="color: #F99615;">Log In&nbsp;<i class="icon-login" style="color: #F99615;"></i></h1>
             </div>
