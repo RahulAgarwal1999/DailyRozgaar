@@ -80,7 +80,6 @@ def loginworker(request):
 
 
 def loginuser(request):
-<<<<<<< HEAD
     return render(request,'accounts/loginuser.html')
 
 
@@ -90,7 +89,7 @@ def dashboardworker(request):
 
 def dashboardcustomer(request):
     return render(request,'accounts/dashboardcustomer.html')
-=======
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -110,4 +109,3 @@ def dashboarduser(request):
 
 def dashboardworker(request):
     return render(request,'accounts/dashboardworker.html')
->>>>>>> 05af42a8474322eff7eea4e8392ae5a4b308b420
