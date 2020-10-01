@@ -6,4 +6,6 @@ urlpatterns = [
     path('loginuser',views.loginuser,name='loginuser'),
     path('registeruser',views.registeruser,name='registeruser'),
     path('registerworker',views.registerworker,name='registerworker'),
+    path('dashboardworker',views.dashboardworker,name='dashboardworker'),
+    path('dashboardcustomer',views.dashboardcustomer,name='dashboardcustomer'),
 ]

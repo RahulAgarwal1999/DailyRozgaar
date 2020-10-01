@@ -12,3 +12,11 @@ def loginworker(request):
 
 def loginuser(request):
     return render(request,'accounts/loginuser.html')
+
+
+def dashboardworker(request):
+    return render(request,'accounts/dashboardworker.html')
+
+
+def dashboardcustomer(request):
+    return render(request,'accounts/dashboardcustomer.html')
