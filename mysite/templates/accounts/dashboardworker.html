@@ -11,12 +11,11 @@
                     <!-- <div class="dropdown" style="width: 340px;"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" onchange="submit()" style="width: 170px;">Select Your Status&nbsp;</button>
                         <div class="dropdown-menu" role="menu" style="margin: 0px;margin-top: 2px;width: 175px;font-family: Nunito, sans-serif;font-size: 14px;"><a class="dropdown-item" role="presentation" href="#">Looking For Work</a><a class="dropdown-item" role="presentation" href="#">Neutral</a><a class="dropdown-item" role="presentation" href="#">At Capacity</a></div>
                     </div> -->
-                    <select style="width: 250px;" onchange="submit()" name="status" class="form-control bg-primary text-white">
+                    <select style="width: 250px;" onchange="submit()" name="status"  class="form-control bg-secondary text-white">
 
                       <option class='bg-light text-dark' disabled='true' selected>-- Mention Your Status --</option>
-                      <option class='bg-light text-dark'>Looking For Work</option>
-                      <option class='bg-light text-dark'>Neutral</option>
-                      <option class='bg-light text-dark'>At Capacity</option>
+                      <option class='bg-light text-dark'>Active For Work</option>
+                      <option class='bg-light text-dark'>Not Active</option>
 
 
                     </select>
@@ -26,7 +25,7 @@
                 </div>
             </div>
             <div class="container-fluid">
-                <h3 class="text-dark mb-4"><strong>RFQ</strong>&nbsp;<strong>Offers Received</strong></h3>
+                <h3 class="text-dark mb-4"><strong>Service</strong>&nbsp;<strong>Request Received</strong></h3>
             </div>
 
             {% if list %}
