@@ -12,16 +12,14 @@
                         <div class="dropdown-menu" role="menu" style="margin: 0px;margin-top: 2px;width: 175px;font-family: Nunito, sans-serif;font-size: 14px;"><a class="dropdown-item" role="presentation" href="#">Looking For Work</a><a class="dropdown-item" role="presentation" href="#">Neutral</a><a class="dropdown-item" role="presentation" href="#">At Capacity</a></div>
                     </div> -->
                     <select style="width: 250px;" onchange="submit()" name="status"  class="form-control bg-secondary text-white">
-
                       <option class='bg-light text-dark' disabled='true' selected>-- Mention Your Status --</option>
                       <option class='bg-light text-dark'>Active For Work</option>
                       <option class='bg-light text-dark'>Not Active</option>
-
-
                     </select>
                     </form>
+
                     <p></p>
-                    <p><strong>Current Status : </strong>{{ DataAll.status }}</p>
+                    <p><strong>Current Status : </strong>{{ data.status }}</p>
                 </div>
             </div>
             <div class="container-fluid">

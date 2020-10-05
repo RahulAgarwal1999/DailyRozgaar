@@ -16,5 +16,6 @@ class WorkerDetails(models.Model):
     cardtype = models.CharField(null=True,max_length=100)
     cardnumber = models.CharField(null=True,max_length=100)
     job = models.CharField(null=True,max_length=100)
+    status = models.CharField(null=True,blank=True,max_length=50)
     def __str__(self):
         return self.user_id.username

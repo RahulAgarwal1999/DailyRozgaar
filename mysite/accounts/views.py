@@ -103,4 +103,23 @@ def dashboarduser(request):
     return render(request,'accounts/dashboarduser.html')
 
 def dashboardworker(request):
-    return render(request,'accounts/dashboardworker.html')
+    user = request.user
+    if request.method == 'POST':
+        if 'status' in request.POST:
+            status = request.POST['status']
+            data = WorkerDetails.objects.get(user_id = user)
+            data.status = status
+            data.save()
+            return redirect(request.path_info)
+
+    data = WorkerDetails.objects.get(user_id = user)
+    context = {
+        'data':data,
+    }
+    return render(request,'accounts/dashboardworker.html',context)
+
+def accountsettingsworker(request):
+    return render(request,'accounts/accountsettingsworker.html')
+
+def accountsettingsuser(request):
+    return render(request,'accounts/accountsettingsuser.html')

@@ -1,0 +1,85 @@
+{% extends 'customerbase.html' %}
+{% load static %}
+{% block content %}
+
+<div id="content">
+
+            <div class="container-fluid" id='blocker'>
+                <h3 class="text-dark mb-4" style="color: rgb(0,0,0);"><strong>Account Settings</strong></h3>
+            </div>
+            <div class="card" style="margin-right: 20px;margin-left: 20px;margin-bottom: 20px;">
+                <div class="card-body text-right">
+                    <div class="card text-left" style="margin-bottom: 10px;">
+                        <div class="card-body">
+                            <h5 style="color: rgb(0,0,0);"><strong>Personal Information&nbsp; &nbsp;</strong></h5>
+                            <div class="row">
+                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>First Name</strong></small><small id="fname">{{ user.first_name }}</small></div>
+                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Last Name</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ user.last_name }}</small></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Phone No.</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ data.number }}</small></div>
+                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Email</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ user.email }}</small></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="card text-left" style="margin-bottom: 10px;">
+                        <div class="card-body">
+                            <h5 style="color: rgb(0,0,0);"><strong>Company Information</strong></h5>
+                            <div class="row">
+                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Company Name</strong></small><small class="form-text text-muted" style="font-size: 13px;">Help text for a form field.</small></div>
+                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Website</strong></small><small class="form-text text-muted" style="font-size: 13px;">Help text for a form field.</small></div>
+                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Company Phone No.</strong></small><small class="form-text text-muted" style="font-size: 13px;">Help text for a form field.</small></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Company Address</strong></small><small class="form-text text-muted" style="font-size: 13px;">Help text for a form field.</small></div>
+                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Company Email</strong></small><small class="form-text text-muted" style="font-size: 13px;">Help text for a form field.</small></div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="card text-left">
+                        <div class="card-body">
+                            <h5 style="color: rgb(0,0,0);"><strong>Shipping Address</strong></h5>
+                            <div class="row">
+                                <div class="col">
+                                    <p>{{ data.address }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form method="POST">
+              {% csrf_token %}
+
+            <div class="card" style="margin-right: 20px;margin-left: 20px;margin-bottom: 20px;">
+                <div class="card-body">
+                    <h4 style="color: rgb(40,79,194);"><strong>Edit Profile&nbsp;</strong></h4>
+                    <form>
+                        <div class="form-row" style="margin-bottom: 10px;">
+                            <div class="col"><input class="form-control" type="text" name='first_name' placeholder="First Name (Please write the existing detail if no change)" required></div>
+                            <div class="col"><input class="form-control" type="text" name='last_name' placeholder="Last Name (Please write the existing detail if no change)" required></div>
+                        </div>
+                        <!-- <div class="form-row" style="margin-bottom: 10px;"> -->
+                            <!-- <div class="col"><input class="form-control" type="text" name='number' placeholder="Phone No."></div> -->
+                            <!-- <div class="col"><input class="form-control" type="text" name='email' placeholder="Email"></div> -->
+                        <!-- </div> -->
+                        <!-- <div class="form-row" style="margin-bottom: 10px;">
+                            <div class="col"><input class="form-control" type="text" placeholder="Company Name"></div>
+                            <div class="col"><input class="form-control" type="text" placeholder="Website"></div>
+                            <div class="col"><input class="form-control" type="text" placeholder="Company Phone No."></div>
+                        </div> -->
+                        <!-- <div class="form-row" style="margin-bottom: 10px;">
+                            <div class="col"><input class="form-control" type="text" placeholder="Company Email"></div>
+                            <div class="col"><input class="form-control" type="text" placeholder="Company Address"></div>
+                        </div> -->
+                        <div class="form-row" style="margin-bottom: 10px;">
+                            <div class="col"><input class="form-control" type="text" name='ship' placeholder="Shipping Address (Please write the existing detail if no change)" required></div>
+                            <div class="col"></div>
+                        </div>
+                        <button class="btn btn-primary" type="submit" style="width: 100px;">UPDATE</button></form>
+                </div>
+            </div>
+            </form>
+        </div>
+{% endblock %}
