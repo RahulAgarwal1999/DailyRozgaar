@@ -22,24 +22,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="card text-left" style="margin-bottom: 10px;">
-                        <div class="card-body">
-                            <h5 style="color: rgb(0,0,0);"><strong>Company Information</strong></h5>
-                            <div class="row">
-                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Company Name</strong></small><small class="form-text text-muted" style="font-size: 13px;">Help text for a form field.</small></div>
-                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Website</strong></small><small class="form-text text-muted" style="font-size: 13px;">Help text for a form field.</small></div>
-                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Company Phone No.</strong></small><small class="form-text text-muted" style="font-size: 13px;">Help text for a form field.</small></div>
-                            </div>
-                            <div class="row">
-                                <div class="col"></div>
-                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Company Address</strong></small><small class="form-text text-muted" style="font-size: 13px;">Help text for a form field.</small></div>
-                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Company Email</strong></small><small class="form-text text-muted" style="font-size: 13px;">Help text for a form field.</small></div>
-                            </div>
-                        </div>
-                    </div> -->
+
                     <div class="card text-left">
                         <div class="card-body">
-                            <h5 style="color: rgb(0,0,0);"><strong>Shipping Address</strong></h5>
+                            <h5 style="color: rgb(0,0,0);"><strong>Personal Address</strong></h5>
                             <div class="row">
                                 <div class="col">
                                     <p>{{ data.address }}</p>
@@ -54,30 +40,26 @@
 
             <div class="card" style="margin-right: 20px;margin-left: 20px;margin-bottom: 20px;">
                 <div class="card-body">
-                    <h4 style="color: rgb(40,79,194);"><strong>Edit Profile&nbsp;</strong></h4>
-                    <form>
-                        <div class="form-row" style="margin-bottom: 10px;">
-                            <div class="col"><input class="form-control" type="text" name='first_name' placeholder="First Name (Please write the existing detail if no change)" required></div>
-                            <div class="col"><input class="form-control" type="text" name='last_name' placeholder="Last Name (Please write the existing detail if no change)" required></div>
+                    <h4 class="mb-3" style="color: rgb(40,79,194);"><strong>Edit Profile&nbsp;</strong></h4>
+
+                    <label for="">Edit Contact Number</label>
+                    <div class="form-row mb-3"  style="margin-bottom: 10px;">
+                        <div class="col"><input class="form-control" type="text" name='contact' placeholder="Enter Contact Number" required></div>
+                    </div>
+
+                        <label for="">Edit Address</label>
+                        <div class="form-row mb-3" style="margin-bottom: 10px;">
+                            <div class="col"><input class="form-control" type="text" name='addr1' placeholder="Address Line 1" required></div>
+                            <div class="col"><input class="form-control" type="text" name='addr2' placeholder="Address Line 2" required></div>
                         </div>
-                        <!-- <div class="form-row" style="margin-bottom: 10px;"> -->
-                            <!-- <div class="col"><input class="form-control" type="text" name='number' placeholder="Phone No."></div> -->
-                            <!-- <div class="col"><input class="form-control" type="text" name='email' placeholder="Email"></div> -->
-                        <!-- </div> -->
-                        <!-- <div class="form-row" style="margin-bottom: 10px;">
-                            <div class="col"><input class="form-control" type="text" placeholder="Company Name"></div>
-                            <div class="col"><input class="form-control" type="text" placeholder="Website"></div>
-                            <div class="col"><input class="form-control" type="text" placeholder="Company Phone No."></div>
-                        </div> -->
-                        <!-- <div class="form-row" style="margin-bottom: 10px;">
-                            <div class="col"><input class="form-control" type="text" placeholder="Company Email"></div>
-                            <div class="col"><input class="form-control" type="text" placeholder="Company Address"></div>
-                        </div> -->
+
                         <div class="form-row" style="margin-bottom: 10px;">
-                            <div class="col"><input class="form-control" type="text" name='ship' placeholder="Shipping Address (Please write the existing detail if no change)" required></div>
-                            <div class="col"></div>
+
+                            <div class="col"><input class="form-control" type="text" name='city' placeholder="City" required></div>
+                            <div class="col"><input class="form-control" type="text" name='state' placeholder="State" required></div>
+                            <div class="col"><input class="form-control" type="text" name='zip' placeholder="Zip Code" required></div>
                         </div>
-                        <button class="btn btn-primary" type="submit" style="width: 100px;">UPDATE</button></form>
+                        <button class="btn " type="submit" style="width: 100px; background-color:#F99615; color:white;">UPDATE</button>
                 </div>
             </div>
             </form>
