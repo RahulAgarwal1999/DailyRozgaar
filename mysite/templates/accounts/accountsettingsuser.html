@@ -28,7 +28,9 @@
                             <h5 style="color: rgb(0,0,0);"><strong>Personal Address</strong></h5>
                             <div class="row">
                                 <div class="col">
-                                    <p>{{ data.address }}</p>
+                                    <p style="margin-top:5px;">{{ data.addressl1 }}</p>
+                                    <p style="margin-top:-13px;">{{ data.addressl2 }}</p>
+                                    <p style="margin-top:-13px;">{{ data.city }} - {{ data.code }} , {{ data.state }}</p>
                                 </div>
                             </div>
                         </div>
@@ -49,15 +51,15 @@
 
                         <label for="">Edit Address</label>
                         <div class="form-row mb-3" style="margin-bottom: 10px;">
-                            <div class="col"><input class="form-control" type="text" name='addr1' placeholder="Address Line 1" required></div>
-                            <div class="col"><input class="form-control" type="text" name='addr2' placeholder="Address Line 2" required></div>
+                            <div class="col"><input class="form-control" type="text" name='addressl1' placeholder="Address Line 1" required></div>
+                            <div class="col"><input class="form-control" type="text" name='addressl2' placeholder="Address Line 2" required></div>
                         </div>
 
                         <div class="form-row" style="margin-bottom: 10px;">
 
                             <div class="col"><input class="form-control" type="text" name='city' placeholder="City" required></div>
                             <div class="col"><input class="form-control" type="text" name='state' placeholder="State" required></div>
-                            <div class="col"><input class="form-control" type="text" name='zip' placeholder="Zip Code" required></div>
+                            <div class="col"><input class="form-control" type="text" name='code' placeholder="Zip Code" required></div>
                         </div>
                         <button class="btn " type="submit" style="width: 100px; background-color:#F99615; color:white;">UPDATE</button>
                 </div>

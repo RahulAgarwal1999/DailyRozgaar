@@ -4,7 +4,11 @@ from django.contrib.auth.models import User
 class UserDetails(models.Model):
     number = models.IntegerField(null=True)
     user_id = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
-    address = models.TextField(null=True)
+    addressl1 = models.TextField(null=True)
+    addressl2 = models.TextField(null=True)
+    city = models.TextField(null=True)
+    state = models.TextField(null=True)
+    code = models.IntegerField(null=True)
     def __str__(self):
         return self.user_id.username
 
@@ -17,5 +21,22 @@ class WorkerDetails(models.Model):
     cardnumber = models.CharField(null=True,max_length=100)
     job = models.CharField(null=True,max_length=100)
     status = models.CharField(null=True,blank=True,max_length=50)
+    def __str__(self):
+        return self.user_id.username
+
+
+class Service(models.Model):
+    user_id = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    service = models.CharField(max_length=100,null=True)
+    adetails = models.TextField(null=True)
+    time  = models.CharField(max_length=50,null=True)
+    number = models.IntegerField(null=True)
+    email = models.CharField(null=True,max_length=100)
+    addressl1 = models.TextField(null=True)
+    addressl2 = models.TextField(null=True)
+    city = models.TextField(null=True)
+    state = models.TextField(null=True)
+    code = models.IntegerField(null=True)
+
     def __str__(self):
         return self.user_id.username

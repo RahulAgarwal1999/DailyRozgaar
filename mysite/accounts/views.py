@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
-from .models import UserDetails,WorkerDetails
+from .models import UserDetails,WorkerDetails,Service
 # Create your views here.
 def registeruser(request):
     if request.method=='POST':
@@ -11,7 +11,7 @@ def registeruser(request):
         password = request.POST['password']
         password2 = request.POST['password2']
         number = request.POST.get('number2')
-        address = request.POST.get('address')
+        # address = request.POST.get('address')
 
         if password == password2:
             if User.objects.filter(username=username).exists():
@@ -22,7 +22,7 @@ def registeruser(request):
                 user.save()
 
                 u_id = User.objects.get(username=username)
-                addusr = UserDetails(user_id=u_id,number=number,address=address)
+                addusr = UserDetails(user_id=u_id,number=number)
                 addusr.save()
 
                 # messages.success(request,'You are now registered and can log in')
@@ -42,7 +42,7 @@ def registerworker(request):
         password2 = request.POST['password2']
         number = request.POST.get('number')
         job = request.POST.get('job')
-        address = request.POST.get('address')
+        # address = request.POST.get('address')
         cardtype = request.POST.get('cardtype')
         cardnumber = request.POST.get('cardnumber')
 
@@ -55,7 +55,7 @@ def registerworker(request):
                 user.save()
 
                 u_id = User.objects.get(username=username)
-                addusr = WorkerDetails(user_id=u_id,number=number,address=address,job=job,cardtype=cardtype,cardnumber=cardnumber)
+                addusr = WorkerDetails(user_id=u_id,number=number,job=job,cardtype=cardtype,cardnumber=cardnumber)
                 addusr.save()
 
                 # messages.success(request,'You are now registered and can log in')
@@ -100,6 +100,23 @@ def logout(request):
         return redirect('index')
 
 def dashboarduser(request):
+    if request.method == 'POST':
+        service = request.POST['service']
+        adetails = request.POST['details']
+        time = request.POST['time']
+        number = request.POST['contact']
+        email = request.POST['email']
+        addressl1 = request.POST['addressl1']
+        addressl2 = request.POST['addressl2']
+        city = request.POST['city']
+        state = request.POST['state']
+        code = request.POST['code']
+
+        user = request.user
+        data = Service(user_id=user,service=service,adetails=adetails,time=time,number=number,email=email,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
+        data.save()
+        return redirect(request.path_info)
+
     return render(request,'accounts/dashboarduser.html')
 
 def dashboardworker(request):
@@ -122,4 +139,31 @@ def accountsettingsworker(request):
     return render(request,'accounts/accountsettingsworker.html')
 
 def accountsettingsuser(request):
-    return render(request,'accounts/accountsettingsuser.html')
+    if request.method=='POST':
+        contact = request.POST['contact']
+        addressl1 = request.POST['addressl1']
+        addressl2 = request.POST['addressl2']
+        city = request.POST['city']
+        state = request.POST['state']
+        code = request.POST['code']
+
+        user = request.user
+
+        Data = UserDetails.objects.get(user_id=user)
+        Data.number = contact
+        Data.addressl1 = addressl1
+        Data.addressl2 = addressl2
+        Data.city = city
+        Data.state = state
+        Data.code = code
+
+        Data.save()
+        return redirect(request.path_info)
+
+    user = request.user
+    data = UserDetails.objects.get(user_id=user)
+    context = {
+        'data':data
+    }
+
+    return render(request,'accounts/accountsettingsuser.html',context)
