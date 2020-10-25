@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from .models import UserDetails,WorkerDetails,Service
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def registeruser(request):
     if request.method=='POST':
@@ -99,7 +100,9 @@ def logout(request):
         auth.logout(request)
         return redirect('index')
 
+@login_required
 def dashboarduser(request):
+    user=request.user
     if request.method == 'POST':
         service = request.POST['service']
         adetails = request.POST['details']
@@ -117,8 +120,13 @@ def dashboarduser(request):
         data.save()
         return redirect(request.path_info)
 
-    return render(request,'accounts/dashboarduser.html')
+    data = UserDetails.objects.get(user_id=user)
+    context={
+        'data':data,
+    }
+    return render(request,'accounts/dashboarduser.html',context)
 
+@login_required
 def dashboardworker(request):
     user = request.user
     if request.method == 'POST':
@@ -138,6 +146,7 @@ def dashboardworker(request):
 def accountsettingsworker(request):
     return render(request,'accounts/accountsettingsworker.html')
 
+@login_required
 def accountsettingsuser(request):
     if request.method=='POST':
         contact = request.POST['contact']
