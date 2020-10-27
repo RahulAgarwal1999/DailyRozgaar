@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Admin Account Settings - Machine Work X</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/admin_bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Adamina">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans">
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+  </head>
+  <body  id="page-top" style="font-family: Nunito, sans-serif;">
+
+    {% include 'partials/_navbar.html' %}
+
+    <div id="wrapper">
+
+
+
+      {% include 'partials/_adminnavbar.html' %}
+
+      <div class="d-flex flex-column" id="content-wrapper">
+        {% block content %}
+        {% endblock %}
+
+
+        
+      </div>
+
+      <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+
+
+      <script src="{% static 'js/admin_db_jquery.min.js' %}"></script>
+      <script src="{% static 'js/message.js' %}"></script>
+      <script src="{% static 'js/modal.js' %}"></script>
+      <script scr='https://mozilla.github.io/pdf.js/build/pdf.s'></script>
+      <script src="{% static 'bootstrap/js/admin_bootstrap.min.js' %}"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+      <script src="{% static 'js/admin_db.js' %}"></script>
+      <script>
+      $('#sendrfq').on('hidden.bs.modal', function() {
+        this.modal('show');
+      });
+
+      </script>
+  </body>
+</html>

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class UserDetails(models.Model):
     number = models.IntegerField(null=True)
@@ -37,6 +38,7 @@ class Service(models.Model):
     city = models.TextField(null=True)
     state = models.TextField(null=True)
     code = models.IntegerField(null=True)
+    list_date = models.DateTimeField(default=timezone.now,blank=True)
 
     def __str__(self):
         return self.user_id.username
