@@ -69,6 +69,21 @@ def registerworker(request):
 
     return render(request,'accounts/registerworker.html')
 
+def loginadmin(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=username,password=password)
+        if user is not None:
+            auth.login(request,user)
+            return redirect('dashboardadmin')
+        else:
+            # messages.error(request,"Invalid Credentials")
+            return redirect('loginadmin')
+    else:
+        return render(request,'accounts/loginadmin.html')
+
 def loginworker(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -105,47 +120,64 @@ def logout(request):
         auth.logout(request)
         return redirect('index')
 
+
+@login_required
+def dashboardadmin(request):
+    user = request.user
+    servicelist = Service.objects.order_by('-list_date')
+    paginator = Paginator(servicelist,10)
+    page = request.GET.get('page')
+    paged_list = paginator.get_page(page)
+
+    count = Service.objects.count()
+    context = {
+        'list':paged_list,
+        'count':count,
+    }
+    return render(request,'adminpages/dashboardadmin.html',context)
+
+@login_required
+def adminrfqreceived(request):
+    user = request.user
+    servicelist = Service.objects.order_by('-list_date')
+    paginator = Paginator(servicelist,10)
+    page = request.GET.get('page')
+    paged_list = paginator.get_page(page)
+
+    count = Service.objects.count()
+    context = {
+        'list':paged_list,
+        'count':count,
+    }
+    return render(request,'adminpages/adminrfqreceived.html',context)
+
 @login_required
 def dashboarduser(request):
-    if not request.user.is_staff and not request.user.is_superuser:
-        user=request.user
-        if request.method == 'POST':
-            service = request.POST['service']
-            adetails = request.POST['details']
-            time = request.POST['time']
-            number = request.POST['contact']
-            email = request.POST['email']
-            addressl1 = request.POST['addressl1']
-            addressl2 = request.POST['addressl2']
-            city = request.POST['city']
-            state = request.POST['state']
-            code = request.POST['code']
+    user=request.user
+    if request.method == 'POST':
+        service = request.POST['service']
+        adetails = request.POST['details']
+        time = request.POST['time']
+        number = request.POST['contact']
+        email = request.POST['email']
+        addressl1 = request.POST['addressl1']
+        addressl2 = request.POST['addressl2']
+        city = request.POST['city']
+        state = request.POST['state']
+        code = request.POST['code']
 
-            user = request.user
-            data = Service(user_id=user,service=service,adetails=adetails,time=time,number=number,email=email,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
-            data.save()
-            return redirect(request.path_info)
-
-        data = UserDetails.objects.get(user_id=user)
-        context={
-        'data':data,
-        }
-        return render(request,'accounts/dashboarduser.html',context)
-
-    elif request.user.is_staff and request.user.is_superuser:
         user = request.user
-        servicelist = Service.objects.order_by('-list_date')
-        paginator = Paginator(servicelist,10)
-        page = request.GET.get('page')
-        paged_list = paginator.get_page(page)
+        data = Service(user_id=user,service=service,adetails=adetails,time=time,number=number,email=email,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
+        data.save()
+        return redirect(request.path_info)
 
-        count = Service.objects.count()
-        context = {
-            'list':paged_list,
-            'count':count,
-        }
+    data = UserDetails.objects.get(user_id=user)
+    context={
+    'data':data,
+    }
+    return render(request,'accounts/dashboarduser.html',context)
 
-        return render(request,'accounts/dashboardadmin.html',context)
+
 
 @login_required
 def dashboardworker(request):
