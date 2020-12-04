@@ -42,3 +42,18 @@ class Service(models.Model):
 
     def __str__(self):
         return self.user_id.username
+
+class ServiceHistory(models.Model):
+    user_id = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    service = models.CharField(max_length=100,null=True)
+    adetails = models.TextField(null=True)
+    time  = models.CharField(max_length=50,null=True)
+    addressl1 = models.TextField(null=True)
+    addressl2 = models.TextField(null=True)
+    city = models.TextField(null=True)
+    state = models.TextField(null=True)
+    code = models.IntegerField(null=True)
+    list_date = models.DateTimeField(default=timezone.now,blank=True)
+
+    def __str__(self):
+        return self.user_id.username

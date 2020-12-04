@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
-from .models import UserDetails,WorkerDetails,Service
+from .models import UserDetails,WorkerDetails,Service,ServiceHistory
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger,Paginator
 # Create your views here.
@@ -169,6 +169,10 @@ def dashboarduser(request):
         user = request.user
         data = Service(user_id=user,service=service,adetails=adetails,time=time,number=number,email=email,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
         data.save()
+
+        history=ServiceHistory(user_id=user,service=service,adetails=adetails,time=time,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
+        history.save()
+
         return redirect(request.path_info)
 
     data = UserDetails.objects.get(user_id=user)
@@ -177,28 +181,16 @@ def dashboarduser(request):
     }
     return render(request,'accounts/dashboarduser.html',context)
 
-
-
 @login_required
-def dashboardworker(request):
-    if request.user.is_staff and not request.user.is_superuser:
-        user = request.user
-        if request.method == 'POST':
-            if 'status' in request.POST:
-                status = request.POST['status']
-                data = WorkerDetails.objects.get(user_id = user)
-                data.status = status
-                data.save()
-                return redirect(request.path_info)
+def userHistory(request):
+    user=request.user
+    data=ServiceHistory.objects.filter(user_id=user).order_by('-list_date')
+    context={
+        'data':data
+    }
+    return render(request,'accounts/user_service_history.html',context)
 
-        data = WorkerDetails.objects.get(user_id = user)
-        context = {
-            'data':data,
-        }
-        return render(request,'accounts/dashboardworker.html',context)
 
-def accountsettingsworker(request):
-    return render(request,'accounts/accountsettingsworker.html')
 
 @login_required
 def accountsettingsuser(request):
@@ -230,3 +222,26 @@ def accountsettingsuser(request):
     }
 
     return render(request,'accounts/accountsettingsuser.html',context)
+
+
+
+@login_required
+def dashboardworker(request):
+    if request.user.is_staff and not request.user.is_superuser:
+        user = request.user
+        if request.method == 'POST':
+            if 'status' in request.POST:
+                status = request.POST['status']
+                data = WorkerDetails.objects.get(user_id = user)
+                data.status = status
+                data.save()
+                return redirect(request.path_info)
+
+        data = WorkerDetails.objects.get(user_id = user)
+        context = {
+            'data':data,
+        }
+        return render(request,'accounts/dashboardworker.html',context)
+
+def accountsettingsworker(request):
+    return render(request,'accounts/accountsettingsworker.html')
