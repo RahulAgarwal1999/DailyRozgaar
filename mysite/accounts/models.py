@@ -28,6 +28,7 @@ class WorkerDetails(models.Model):
 
 class Service(models.Model):
     user_id = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    service_id=models.CharField(null=False,max_length=20,default='DR000000')
     service = models.CharField(max_length=100,null=True)
     adetails = models.TextField(null=True)
     time  = models.CharField(max_length=50,null=True)
@@ -45,6 +46,7 @@ class Service(models.Model):
 
 class ServiceHistory(models.Model):
     user_id = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    service_id=models.CharField(null=False,max_length=20,default='DR000000')
     service = models.CharField(max_length=100,null=True)
     adetails = models.TextField(null=True)
     time  = models.CharField(max_length=50,null=True)

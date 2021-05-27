@@ -3,6 +3,7 @@ from django.contrib.auth.models import User,auth
 from .models import UserDetails,WorkerDetails,Service,ServiceHistory
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger,Paginator
+import random, math
 # Create your views here.
 def registeruser(request):
     if request.method=='POST':
@@ -166,11 +167,22 @@ def dashboarduser(request):
         state = request.POST['state']
         code = request.POST['code']
 
+        # user_data=User.objects.get(username=user)
+
+
+        first=user.first_name[0]
+        last=user.last_name[0]
+        num = random.randint(10000000, 99999999)
+        str1 = 'DR'
+        str1 += first.upper()
+        str1 += last.upper()
+        unique_id = str1+str(num)
+
         user = request.user
-        data = Service(user_id=user,service=service,adetails=adetails,time=time,number=number,email=email,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
+        data = Service(user_id=user,service_id=unique_id,service=service,adetails=adetails,time=time,number=number,email=email,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
         data.save()
 
-        history=ServiceHistory(user_id=user,service=service,adetails=adetails,time=time,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
+        history=ServiceHistory(user_id=user,service_id=unique_id,service=service,adetails=adetails,time=time,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
         history.save()
 
         return redirect(request.path_info)
