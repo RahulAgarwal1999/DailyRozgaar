@@ -4,6 +4,7 @@ from .models import UserDetails,WorkerDetails,Service,ServiceHistory
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger,Paginator
 import random, math
+from django.contrib import messages
 # Create your views here.
 def registeruser(request):
     if request.method=='POST':
@@ -184,7 +185,7 @@ def dashboarduser(request):
 
         history=ServiceHistory(user_id=user,service_id=unique_id,service=service,adetails=adetails,time=time,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
         history.save()
-
+        messages.success(request,'Service Request Sucessfully created')
         return redirect(request.path_info)
 
     data = UserDetails.objects.get(user_id=user)
