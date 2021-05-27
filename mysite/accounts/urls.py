@@ -17,7 +17,12 @@ urlpatterns = [
     path('registerworker',views.registerworker,name='registerworker'),
     path('dashboardworker',views.dashboardworker,name='dashboardworker'),
     path('accountsettingsworker',views.accountsettingsworker,name='accountsettingsworker'),
+
     path('worker_feedback',views.workerfeedback,name='workerfeedback'),
+    path('showworker',views.showworker,name='showworker'),
+    path('showcustomer',views.showcustomer,name='showcustomer'),
+
+
 
     path('logout',views.logout,name='logout'),
 
