@@ -263,3 +263,24 @@ def dashboardworker(request):
 
 def accountsettingsworker(request):
     return render(request,'accounts/accountsettingsworker.html')
+
+
+@login_required
+def showworker(request):
+    data = WorkerDetails.objects.all()
+    count = WorkerDetails.objects.count()
+    context = {
+        'data' : data,
+        'count' : count
+    }
+    return render(request,'adminpages/showworker.html',context)
+
+@login_required
+def showcustomer(request):
+    data = UserDetails.objects.all()
+    count = UserDetails.objects.count()
+    context = {
+        'data' : data,
+        'count' : count
+    }
+    return render(request,'adminpages/showcustomer.html',context)

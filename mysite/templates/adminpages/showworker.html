@@ -1,0 +1,69 @@
+{% extends 'adminbase.html' %}
+{% load static %}
+{% block content %}
+
+
+<div id="content">
+
+            <div class="container-fluid">
+                <h3 class="text-dark pt-4 mb-4"><strong>Registered Customers</strong></h3>
+                <div class="card shadow" style="margin-bottom: 20px;">
+                    <div class="card-header py-3"></div>
+                    <div class="card-body">
+                      <div class="col-md-6 align-self-center">
+                          <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Total Entries : {{ count }}</p>
+                      </div>
+                        <div class="row">
+                            <div class="col-md-6 text-nowrap">
+                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+                                  <label>
+                                    Worker Details : 
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                          {% if data %}
+                            <table class="table dataTable my-0" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>User_Id</th>
+                                        <th>Contact No.</th>
+                                        <th>Address</th>
+                                        <th>Card Number</th>
+                                        <th>Job</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {% for da in data %}
+                                    <tr>
+                                        <td>{{ da.user_id }}</td>
+                                        <td>{{ da.number }}</td>
+                                        <td>{{ da.address }}</td>
+                                        <td>{{ da.cardnumber }}</td>
+                                        <td>{{ da.job }}</td>
+                                        <td>{{ da.status }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                                <tfoot>
+                                    <tr></tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        {% else %}
+                        <p class="pl-4"><strong>No Workers Registered Yet !</strong></p>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock %}
