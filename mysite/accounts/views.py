@@ -197,9 +197,14 @@ def dashboarduser(request):
 @login_required
 def userHistory(request):
     user=request.user
-    data=ServiceHistory.objects.filter(user_id=user).order_by('-list_date')
+    data = ServiceHistory.objects.filter(user_id=user).order_by('-list_date')
+    paginator = Paginator(data,5)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
+    count = ServiceHistory.objects.count()
     context={
-        'data':data
+        'data':paged_listings,
+        'count':count
     }
     return render(request,'accounts/user_service_history.html',context)
 
