@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger,Paginator
 import random, math
 from django.contrib import messages
+from django.core.mail import send_mail
 # Create your views here.
 def registeruser(request):
     if request.method=='POST':
@@ -185,6 +186,13 @@ def dashboarduser(request):
 
         history=ServiceHistory(user_id=user,service_id=unique_id,service=service,adetails=adetails,time=time,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
         history.save()
+        send_mail(
+                    'Daily Rozgaar',
+                    'Thank you '+ first_name + ' for showing interest in our website. Login in with us and enjoy marketing.You have registered as a CUSTOMER',
+                    'aayushmahajan950@gmail.com',
+                    [email],
+                    fail_silently = False
+                    )
         messages.success(request,'Service Request Sucessfully created')
         return redirect(request.path_info)
 
@@ -263,3 +271,9 @@ def dashboardworker(request):
 
 def accountsettingsworker(request):
     return render(request,'accounts/accountsettingsworker.html')
+
+@login_required
+def workerfeedback(request):
+    if request.user.is_staff and not request.user.is_superuser:
+        user = request.user
+        return render(request,'accounts/worker_feedback.html')
