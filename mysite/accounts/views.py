@@ -205,7 +205,7 @@ def dashboarduser(request):
         history.save()
         send_mail(
                     'Daily Rozgaar',
-                    'Thank you '+ first_name + ' for showing interest in our website. Login in with us and enjoy marketing.You have registered as a CUSTOMER',
+                    'Thank you '+ first + last + ' for showing interest in our website. Login in with us and feel free to avail our services at a rational price. You have registered as a USER',
                     'aayushmahajan950@gmail.com',
                     [email],
                     fail_silently = False

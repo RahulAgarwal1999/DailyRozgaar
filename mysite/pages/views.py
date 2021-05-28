@@ -6,3 +6,7 @@ def index(request):
 
 def our_team(request):
     return render(request,'pages/our_team.html')
+
+    
+def customerindex(request):
+    return render(request,'pages/customerindex.html')
