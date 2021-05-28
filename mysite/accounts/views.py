@@ -215,6 +215,9 @@ def dashboarduser(request):
         str1 += last.upper()
         unique_id = str1+str(num)
 
+        delete_item=Service.objects.all().delete();
+
+
         user = request.user
         data = Service(user_id=user,service_id=unique_id,service=service,adetails=adetails,time=time,number=number,email=email,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
         data.save()
@@ -232,7 +235,24 @@ def dashboarduser(request):
 
 
 
-        # get_workers=WorkerDetails.objects.filter(job=service,)
+        get_workers=WorkerDetails.objects.filter(job=service,state=state,status="Active For Work")
+        get_worker_id =[]
+        for i in get_workers:
+            # get_worker_id.append(i.user_id)
+            get_worker_id.append(i.user_id.username)
+
+        print(get_worker_id)
+
+        rand_idx = random.randrange(len(get_worker_id))
+        print('Index',rand_idx)
+        random_id = get_worker_id[rand_idx]
+        print(random_id)
+
+
+        data.alloted_worker=random_id
+        data.save()
+
+        # Email to worker who has been alloted
 
 
 
@@ -348,3 +368,14 @@ def showcustomer(request):
         'count' : count
     }
     return render(request,'adminpages/showcustomer.html',context)
+
+
+
+@login_required
+def service_confirm(request):
+    user=request.user
+    # Get the latest rfq of the user and filter it
+
+
+
+    return render(request,'service_confirm.html')
