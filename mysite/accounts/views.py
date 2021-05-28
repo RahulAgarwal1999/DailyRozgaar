@@ -229,6 +229,16 @@ def dashboarduser(request):
                     fail_silently = False
                     )
         messages.success(request,'Service Request Sucessfully created')
+
+
+
+        # get_workers=WorkerDetails.objects.filter(job=service,)
+
+
+
+
+
+
         return redirect(request.path_info)
 
     data = UserDetails.objects.get(user_id=user)
