@@ -315,7 +315,12 @@ def dashboardworker(request):
         return render(request,'accounts/dashboardworker.html',context)
 
 def accountsettingsworker(request):
-    return render(request,'accounts/accountsettingsworker.html')
+    user = request.user
+    data = WorkerDetails.objects.get(user_id=user)
+    context = {
+        'data':data
+    }
+    return render(request,'accounts/accountsettingsworker.html',context)
 
 
 @login_required
