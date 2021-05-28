@@ -13,6 +13,7 @@ urlpatterns = [
     path('dashboarduser',views.dashboarduser,name='dashboarduser'),
     path('user_history',views.userHistory,name='user_history'),
     path('accountsettingsuser',views.accountsettingsuser,name='accountsettingsuser'),
+    path('service_confirm',views.service_confirm,name='service_confirm'),
 
     path('loginworker',views.loginworker,name='loginworker'),
     path('registerworker',views.registerworker,name='registerworker'),

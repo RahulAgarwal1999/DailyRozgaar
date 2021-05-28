@@ -224,20 +224,18 @@ def dashboarduser(request):
 
         history=ServiceHistory(user_id=user,service_id=unique_id,service=service,adetails=adetails,time=time,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
         history.save()
-        # send_mail(
-        #             'Daily Rozgaar',
-        #             'Thank you '+ first_name_entry + last_name_entry + ' for showing interest in our website. Your service request has been generated with the ID Number : ' + unique_id + '. We will get back to you soon !',
-        #             'aayushmahajan950@gmail.com',
-        #             [email],
-        #             fail_silently = False
-        #             )
-        # messages.success(request,'Service Request Sucessfully created')
+        send_mail(
+                    'Daily Rozgaar',
+                    'Thank you '+ first_name_entry + last_name_entry + ' for showing interest in our website. Your service request has been generated with the ID Number : ' + unique_id + '. We will get back to you soon !',
+                    'aayushmahajan950@gmail.com',
+                    [email],
+                    fail_silently = False
+                    )
+        messages.success(request,'Service Request Sucessfully created')
 
 
 
         get_workers=WorkerDetails.objects.filter(job=service,state=state,status="Active For Work")
-
-
         get_worker_id =[]
         for i in get_workers:
             # get_worker_id.append(i.user_id)
@@ -253,6 +251,11 @@ def dashboarduser(request):
 
         data.alloted_worker=random_id
         data.save()
+
+        # Email to worker who has been alloted
+
+
+
 
 
 
@@ -360,3 +363,14 @@ def showcustomer(request):
         'count' : count
     }
     return render(request,'adminpages/showcustomer.html',context)
+
+
+
+@login_required
+def service_confirm(request):
+    user=request.user
+    # Get the latest rfq of the user and filter it
+
+
+
+    return render(request,'service_confirm.html')
