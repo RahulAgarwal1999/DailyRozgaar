@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="d-flex" style="background-image: url(img/man-welding-metal-bars-2381463.jpg);height: 500px;background-position: center;background-size: cover;background-repeat: no-repeat;margin-top: 65px;margin: 10px;">
+    <div class="d-flex justify-content-center align-items-center" style="height:inherit;min-height:initial;width:100%;position:absolute;left:0;background-image :url(' ../../static/img/image4.jpg' ) ; background-size: cover;">
+        <div class="d-flex align-items-center order-12" style="height:200px;">
+            <div class="container" style="padding-right: 0px;padding-left: 0px;">
+                <h1 class="text-center d-xl-flex text-dark">Our Team</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="card-deck" style="margin: 20px;">
+    <div class="card">
+        <div class="card-body"><i class="fas fa-hammer d-flex d-lg-flex justify-content-center justify-content-lg-center" style="font-size: 40px;"></i>
+            <h4 class="card-title">Title</h4>
+            <p class="text-justify d-lg-flex card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;<br></p>
+            <button
+                class="btn btn-primary" type="button">Button</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body"><i class="fas fa-tools d-flex d-lg-flex justify-content-center justify-content-lg-center" style="font-size: 40px;"></i>
+            <h4 class="card-title">Title</h4>
+            <p class="text-justify card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;<br></p>
+            <button
+                class="btn btn-primary" type="button">Button</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body"><i class="fas fa-toolbox d-flex d-lg-flex justify-content-center justify-content-lg-center" style="font-size: 40px;"></i>
+            <h4 class="card-title">Title</h4>
+            <p class="text-justify card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;<br></p>
+            <button
+                class="btn btn-primary" type="button">Button</button>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+  <div class="">
+      <h1 class="m-4">About Us</h1>
+  </div>
+  <div class=" uk-grid">
+    <div class="">
+
+
+      <div class="uk-width-1-4@m px-2">
+        <div class=" text-center py-3 mx-1 mt-2" style="border-radius:10px;">
+          <div class="px-4">
+            <div class="m-auto " >
+
+                  <div class="user-profile-photo  m-auto" style="height:250px; width:250px;">
+                  <img src="{% static 'images/avatars/home-profile.jpg' %}" alt="">
+                </div>
+
+            </div>
+            <h3 class="mb-1" style="font-family:impact;"> Rahul Agarwal </h3>
+            <h5 class="my-0" style="font-size:14px;"> Full Stack Developer </h5>
+            <div class="">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+</div>
+{% endblock %}
