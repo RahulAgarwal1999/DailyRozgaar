@@ -20,7 +20,7 @@ def registeruser(request):
 
         if password == password2:
             if User.objects.filter(username=username).exists():
-                # messages.error(request,'That username is already taken')
+                messages.error(request,'That username is already taken')
                 return redirect('registeruser')
             else:
                 user = User.objects.create_user(username=username,password=password,email=email,first_name=first_name,last_name=last_name)
@@ -32,7 +32,15 @@ def registeruser(request):
                 addusr = UserDetails(user_id=u_id,number=number)
                 addusr.save()
 
-                # messages.success(request,'You are now registered and can log in')
+                send_mail(
+                            'Daily Rozgaar',
+                            'Thank you '+ first_name + last_name + ' for showing interest in our website. You have been successfully registered. Feel free to call for any house help and avail our facilities at a rational price !',
+                            'aayushmahajan950@gmail.com',
+                            [email],
+                            fail_silently = False
+                            )
+
+                messages.success(request,'You are now registered and can log in')
                 return redirect('loginuser')
 
     return render(request,'accounts/registeruser.html')
@@ -49,13 +57,13 @@ def registerworker(request):
         password2 = request.POST['password2']
         number = request.POST.get('number')
         job = request.POST.get('job')
-        # address = request.POST.get('address')
+        state = request.POST.get('state')
         cardtype = request.POST.get('cardtype')
         cardnumber = request.POST.get('cardnumber')
 
         if password == password2:
             if User.objects.filter(username=username).exists():
-                # messages.error(request,'That username is already taken')
+                messages.error(request,'That username is already taken')
                 return redirect('registerworker')
             else:
                 user = User.objects.create_user(username=username,password=password,email=email,first_name=first_name,last_name=last_name)
@@ -64,10 +72,18 @@ def registerworker(request):
                 user.save()
 
                 u_id = User.objects.get(username=username)
-                addusr = WorkerDetails(user_id=u_id,number=number,job=job,cardtype=cardtype,cardnumber=cardnumber)
+                addusr = WorkerDetails(user_id=u_id,number=number,job=job,cardtype=cardtype,cardnumber=cardnumber,state=state)
                 addusr.save()
 
-                # messages.success(request,'You are now registered and can log in')
+                send_mail(
+                            'Daily Rozgaar',
+                            'Thank you '+ first_name + last_name + ' for showing interest in our website. You have been successfully registered. If any possible work comes for you it will be displayed in you dashboard !',
+                            'aayushmahajan950@gmail.com',
+                            [email],
+                            fail_silently = False
+                            )
+
+                messages.success(request,'You are now registered and can log in')
                 return redirect('loginworker')
 
     return render(request,'accounts/registerworker.html')
@@ -191,6 +207,8 @@ def dashboarduser(request):
 
         first=user.first_name[0]
         last=user.last_name[0]
+        first_name_entry = user.first_name
+        last_name_entry = user.last_name
         num = random.randint(10000000, 99999999)
         str1 = 'DR'
         str1 += first.upper()
@@ -205,7 +223,7 @@ def dashboarduser(request):
         history.save()
         send_mail(
                     'Daily Rozgaar',
-                    'Thank you '+ first + last + ' for showing interest in our website. Login in with us and feel free to avail our services at a rational price. You have registered as a USER',
+                    'Thank you '+ first_name_entry + last_name_entry + ' for showing interest in our website. Your service request has been generated with the ID Number : ' + unique_id + '. We will get back to you soon !',
                     'aayushmahajan950@gmail.com',
                     [email],
                     fail_silently = False
