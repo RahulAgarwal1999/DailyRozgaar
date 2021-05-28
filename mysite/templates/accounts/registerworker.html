@@ -44,9 +44,17 @@
                 <div class="form-row form-group">
                     <div class="col-sm-4 label-column">
                       <label class="col-form-label" for="company_name">Job Looking For (Profession)</label>
+
                     </div>
                     <div class="col-sm-6 input-column">
-                      <input class="form-control" name='job' type="text">
+                      <select class="form-control" name='job' id="exampleFormControlSelect1" required>
+                        <option class='bg-light text-dark' disabled='true' selected>-- Select the service you need --</option>
+                        <option value="plumber">Plumber</option>
+                        <option value="house painter">House Painter</option>
+                        <option value="car painter">Car Painter</option>
+                        <option value="carpenter">Carpenter</option>
+                        <option value="electrician">Electrician</option>
+                      </select>
                     </div>
                 </div>
 

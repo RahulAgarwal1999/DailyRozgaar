@@ -154,6 +154,23 @@ def adminrfqreceived(request):
     }
     return render(request,'adminpages/adminrfqreceived.html',context)
 
+
+@login_required
+def workers_for_rfq_received(request,id):
+    user = request.user
+    rfq_data=Service.objects.get(id=id);
+    print(rfq_data.service)
+    data = WorkerDetails.objects.filter(job=rfq_data.service)
+    print(data)
+    count = WorkerDetails.objects.count()
+    context = {
+        'data' : data,
+        'count' : count
+    }
+
+    return render(request,'adminpages/workers_for_rfq_received.html',context)
+
+
 @login_required
 def dashboarduser(request):
     user=request.user
