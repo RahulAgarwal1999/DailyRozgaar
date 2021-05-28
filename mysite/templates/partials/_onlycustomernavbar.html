@@ -1,0 +1,45 @@
+{% load static %}
+<nav class="navbar navbar-light navbar-expand-xl fixed-top bg-white shadow ">
+    <div class="container  ">
+      <div class="uk-flex-left">
+        <a class="navbar-brand" href="{% url 'customerindex' %}" style="font-family: Adamina, serif;"><strong>DailyRozgaar</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+      </div>
+
+        <div
+            class="collapse navbar-collapse uk-flex-right " id="navcol-1">
+            <ul class="nav navbar-nav " style="font-family: Adamina, serif;">
+                <li class="nav-item" role="presentation"></li>
+                <li class="nav-item" role="presentation"></li>
+                <li class="nav-item" role="presentation"></li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Capabilities</a>
+                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                </li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Industries</a>
+                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                </li>
+
+                <li class="nav-item" role="presentation"><a class="nav-link" href="untitled-4.html">Our Team</a></li>
+                <li class="nav-item" role="presentation"></li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+              <div class="dropdown" >
+                <button class="ml-4 btn btn-primary btn-block dropdown-toggle" style="margin-left:10px;" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-user"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}" class='nav-link'>
+                  <i class='fas fa-sign-out-alt'></i>Logout
+                  </a>
+
+                  <form class="" action="{% url 'logout' %}" method="POST" id='logout'>
+                    {% csrf_token %}
+                    <input type="hidden">
+                  </form>
+                </div>
+              </div>
+            </ul>
+
+          </div>
+    </div>
+</nav>
