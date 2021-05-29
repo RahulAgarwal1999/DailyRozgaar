@@ -224,16 +224,6 @@ def dashboarduser(request):
 
         history=ServiceHistory(user_id=user,service_id=unique_id,service=service,adetails=adetails,time=time,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
         history.save()
-        send_mail(
-                    'Daily Rozgaar',
-                    'Thank you '+ first_name_entry + last_name_entry + ' for showing interest in our website. Your service request has been generated with the ID Number : ' + unique_id + '. We will get back to you soon !',
-                    'aayushmahajan950@gmail.com',
-                    [email],
-                    fail_silently = False
-                    )
-        messages.success(request,'Service Request Sucessfully created')
-
-
 
         get_workers=WorkerDetails.objects.filter(job=service,state=state,status="Active For Work")
         get_worker_id =[]
@@ -244,18 +234,24 @@ def dashboarduser(request):
         print(get_worker_id)
 
         if(len(get_worker_id)==0):
-            messages.success(request,'No suitable helper available right now ! Please try again later.')
+            messages.error(request,'No suitable helper available right now ! Please try again later.')
             return redirect(request.path_info)
+
+        send_mail(
+                    'Daily Rozgaar',
+                    'Thank you '+ first_name_entry + last_name_entry + ' for showing interest in our website. Your service request has been generated with the ID Number : ' + unique_id + '. We will get back to you soon !',
+                    'aayushmahajan950@gmail.com',
+                    [email],
+                    fail_silently = False
+                    )
 
         rand_idx = random.randrange(len(get_worker_id))
         print('Index',rand_idx)
         random_id = get_worker_id[rand_idx]
         print(random_id)
 
-
         data.alloted_worker=random_id
         data.save()
-
 
         history.alloted_worker=random_id
         history.save()
@@ -269,7 +265,7 @@ def dashboarduser(request):
             [sendingtoworkeremail],
             fail_silently = False
         )
-
+        messages.success(request,'Thank You ! Your request has been successfully generated. You can check it in History section. ')
         return redirect(request.path_info)
 
     data = UserDetails.objects.get(user_id=user)
