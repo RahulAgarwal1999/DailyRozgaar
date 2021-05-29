@@ -252,6 +252,9 @@ def dashboarduser(request):
         data.alloted_worker=random_id
         data.save()
 
+        history.alloted_worker=random_id
+        history.save()
+
         # Email to worker who has been alloted
 
 
@@ -275,9 +278,11 @@ def userHistory(request):
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     count = ServiceHistory.objects.count()
+    worker_details=WorkerDetails.objects.all()
     context={
         'data':paged_listings,
-        'count':count
+        'count':count,
+        'worker':worker_details
     }
     return render(request,'accounts/user_service_history.html',context)
 

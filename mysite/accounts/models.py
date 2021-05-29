@@ -42,9 +42,11 @@ class Service(models.Model):
     code = models.IntegerField(null=True)
     list_date = models.DateTimeField(default=timezone.now,blank=True)
     alloted_worker=models.CharField(max_length=100,null=True)
-
+    worker_name=models.CharField(max_length=100,null=True)
+    worker_phonenumber = models.IntegerField(null=True)
     def __str__(self):
         return self.service_id
+
 
 class ServiceHistory(models.Model):
     user_id = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
@@ -59,6 +61,8 @@ class ServiceHistory(models.Model):
     code = models.IntegerField(null=True)
     list_date = models.DateTimeField(default=timezone.now,blank=True)
     alloted_worker=models.CharField(max_length=100,null=True)
+    worker_name=models.CharField(max_length=100,null=True)
+    worker_phonenumber = models.IntegerField(null=True)
 
     def __str__(self):
         return self.user_id.username
