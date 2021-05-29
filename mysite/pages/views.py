@@ -11,9 +11,8 @@ def our_team(request):
 
 @login_required
 def customerindex(request):
-    # user=request.user
-    # data=User.object.get(user=user)
-    # context={
-    #     'data':data
-    # }
     return render(request,'pages/customerindex.html')
+
+@login_required
+def workerindex(request):
+    return render(request,'pages/workerindex.html')

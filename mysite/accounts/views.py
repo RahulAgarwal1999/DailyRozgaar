@@ -215,8 +215,8 @@ def dashboarduser(request):
         str1 += last.upper()
         unique_id = str1+str(num)
 
-        delete_item_service=Service.objects.all().delete();
-        delete_item_service_history=ServiceHistory.objects.all().delete();
+        # delete_item_service=Service.objects.all().delete();
+        # delete_item_service_history=ServiceHistory.objects.all().delete();
 
 
 
@@ -236,7 +236,7 @@ def dashboarduser(request):
                     [email],
                     fail_silently = False
                     )
-        messages.success(request,'Service Request Sucessfully created')
+
 
 
         get_workers=WorkerDetails.objects.filter(job=service,state=state,status="Active For Work")
@@ -248,7 +248,9 @@ def dashboarduser(request):
         print(get_worker_id)
 
         if(len(get_worker_id)==0):
-            messages.error(request,'No suitable helper available right now ! Please try again later.')
+            messages.warning(request,'No suitable helper available right now ! Please try again later.')
+            data.delete();
+            history.delete();
             return redirect(request.path_info)
 
         send_mail(
