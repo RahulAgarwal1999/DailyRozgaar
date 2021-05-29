@@ -45,6 +45,14 @@
                                                         <p style="margin-top:-13px;">{{ li.city }} - {{ li.code }} , {{ li.state }}</p>
                                                     </div>
                                                 </div>
+
+                                                <h3>Alloted Worker</h3>
+                                                <div class="row" style="margin-bottom: 10px;">
+                                                  <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Alloted Worker :  </strong> {{li.worker_name}} </small></div>
+                                                  <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Contact Number : </strong> {{li.worker_phonenumber}} </small></div>
+                                                </div>
+
+
                                           </div>
                                         </div>
                         <!-- </div> -->
@@ -52,16 +60,7 @@
                 </div>
             </div>
 
-            <div class="row" style="width: 240px;margin-right: 0px;margin-left: 0px;">
-                    <div class="col"><button class="btn btn-block btn-primary" type="button" disabled>Revert</button></div>
 
-                      <div class="col">
-
-
-                          <a class="btn btn-block btn-success" href="{% url 'workers_for_rfq_received' li.id %}">Forward</a>
-
-                      </div>
-            </div>
 
 
           </div>

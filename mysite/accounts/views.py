@@ -215,22 +215,26 @@ def dashboarduser(request):
         str1 += last.upper()
         unique_id = str1+str(num)
 
-        delete_item=Service.objects.all().delete();
+        delete_item_service=Service.objects.all().delete();
+        delete_item_service_history=ServiceHistory.objects.all().delete();
+
 
 
         user = request.user
+
+
         data = Service(user_id=user,service_id=unique_id,service=service,adetails=adetails,time=time,number=number,email=email,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
         data.save()
 
         history=ServiceHistory(user_id=user,service_id=unique_id,service=service,adetails=adetails,time=time,addressl1=addressl1,addressl2=addressl2,state=state,city=city,code=code)
         history.save()
-        send_mail(
-                    'Daily Rozgaar',
-                    'Thank you '+ first_name_entry + last_name_entry + ' for showing interest in our website. Your service request has been generated with the ID Number : ' + unique_id + '. We will get back to you soon !',
-                    'aayushmahajan950@gmail.com',
-                    [email],
-                    fail_silently = False
-                    )
+        # send_mail(
+        #             'Daily Rozgaar',
+        #             'Thank you '+ first_name_entry + last_name_entry + ' for showing interest in our website. Your service request has been generated with the ID Number : ' + unique_id + '. We will get back to you soon !',
+        #             'aayushmahajan950@gmail.com',
+        #             [email],
+        #             fail_silently = False
+        #             )
         messages.success(request,'Service Request Sucessfully created')
 
 
@@ -252,23 +256,28 @@ def dashboarduser(request):
         random_id = get_worker_id[rand_idx]
         print(random_id)
 
+        worker=WorkerDetails.objects.get(user_id__username = random_id)
+        user_details=User.objects.get(username=random_id)
 
         data.alloted_worker=random_id
+        data.worker_name=user_details.first_name + user_details.last_name
+        data.worker_phonenumber =worker.number
         data.save()
 
-
         history.alloted_worker=random_id
+        history.worker_name=user_details.first_name + user_details.last_name
+        history.worker_phonenumber =worker.number
         history.save()
 
         data2 = WorkerDetails.objects.get(user_id__username = random_id)
         sendingtoworkeremail = data2.email
-        send_mail(
-            'Daily Rozgaar',
-            'We bring good news ! You have been allotted a job as per your description. The address for is : ' + addressl1 + ' ,' + addressl2 + ' ,' + city + '-' + state + ' . The time scheduled is ' + time + ' . And some additional description has been provided : '+  adetails + ' . Feel free to call on 901******2 for clarification. ',
-            'aayushmahajan950@gmail.com',
-            [sendingtoworkeremail],
-            fail_silently = False
-        )
+        # send_mail(
+        #     'Daily Rozgaar',
+        #     'We bring good news ! You have been allotted a job as per your description. The address for is : ' + addressl1 + ' ,' + addressl2 + ' ,' + city + '-' + state + ' . The time scheduled is ' + time + ' . And some additional description has been provided : '+  adetails + ' . Feel free to call on 901******2 for clarification. ',
+        #     'aayushmahajan950@gmail.com',
+        #     [sendingtoworkeremail],
+        #     fail_silently = False
+        # )
 
         return redirect(request.path_info)
 
@@ -286,11 +295,10 @@ def userHistory(request):
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     count = ServiceHistory.objects.count()
-    worker_details=WorkerDetails.objects.all()
+    # worker_details=WorkerDetails.objects.all()
     context={
         'data':paged_listings,
         'count':count,
-        'worker':worker_details
     }
     return render(request,'accounts/user_service_history.html',context)
 
