@@ -21,8 +21,8 @@
                                 <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Email</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ user.email }}</small></div>
                             </div>
                             <div class="row">
-                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Government ID Type</strong></small><small class="form-text text-muted" style="font-size: 13px;">Aadharrr Card</small></div>
-                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Card No.</strong></small><small class="form-text text-muted" style="font-size: 13px;">Fake</small></div>
+                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Government ID Type</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ data.cardtype }}</small></div>
+                                <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Card No.</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ data.cardnumber }}</small></div>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,6 @@
                             <div class="row">
                                 <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Company Name</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ data.company_name }}</small></div>
                                 <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Zip Code</strong></small><small class="form-text text-muted" style="font-size: 13px;">{{ data.code }}</small></div>
-                                <!-- <div class="col"><small class="form-text text-muted" style="font-size: 14px;"><strong>Website</strong></small><small class="form-text text-muted" style="font-size: 13px;">Help text for a form field.</small></div> -->
                                 <div class="col"></div>
                             </div>
 
@@ -60,60 +59,5 @@
         </div>
     </div>
     </form>
-
-
-
-    <!-- <form method="POST"> -->
-<!-- 
-    <div class="card" style="margin-right: 20px;margin-left: 20px;margin-bottom: 20px;">
-        <div class="card-body">
-            <h4 style="color: rgb(40,79,194);"><strong>Edit Your Choices</strong></h4>
-
-                <div class="form-row" style="margin-bottom: 10px;">
-                    <div class="col">
-                      <form method="POST">
-                        {% csrf_token %}
-
-                      <small class="form-text text-muted" style="font-size: 14px;">
-                        <strong>Operations Offered</strong></small>
-                        <div class="form-check" style="padding-left: 0px;"><input value='Conventional Turning' class="form-check-input hex" type="checkbox" id="oct" style="width: 60px;"><label class="form-check-label" for="oct" style="padding-left: 25px;">Conventional Turning</label></div>
-                        <div class="form-check" style="padding-left: 0px;"><input value='Conventional Milling' class="form-check-input hex" type="checkbox" id="ocm" style="width: 60px;"><label class="form-check-label" for="ocm" style="padding-left: 25px;">Conventional Milling</label></div>
-                        <div class="form-check" style="padding-left: 0px;"><input value='Key Slotting' class="form-check-input hex" type="checkbox" id="oks" style="width: 60px;"><label class="form-check-label" for="oks" style="padding-left: 25px;">Key Slotting</label></div>
-                        <div class="form-check" style="padding-left: 0px;"><input value='Grinding' class="form-check-input hex" type="checkbox" id="og" style="width: 60px;"><label class="form-check-label" for="og" style="padding-left: 25px;">Grinding</label></div>
-                        <p></p>
-                        <p></p>
-                        <input type="text" id='hexid' name="checkvalue">
-                        <p></p>
-                        <p><strong>Your Already Selected 'Options Offered' : </strong>{{ data.checkvalue }}</p>
-                        <button class="btn btn-primary" type="submit" style="width: 220px;">Update Options Offered</button
-                        <hr/>
-                        </form>
-                    </div>
-
-
-                    <div class="col">
-                      <form method="POST">
-                        {% csrf_token %}
-
-
-                      <small class="form-text text-muted" style="font-size: 14px;"><strong>Resources</strong></small>
-                        <div class="form-check" style="padding-left: 0px;"><input value='Light Duty Lathe' class="form-check-input hex2" type="checkbox" id="rldl" style="width: 60px;"><label class="form-check-label" for="rldl" style="padding-left: 25px;">Light Duty Lathe</label></div>
-                        <div class="form-check" style="padding-left: 0px;"><input value='Medium Duty Lathe' class="form-check-input hex2" type="checkbox" id="rmdl" style="width: 60px;"><label class="form-check-label" for="rmdl" style="padding-left: 25px;">Medium Duty Lathe<br></label></div>
-                        <div class="form-check" style="padding-left: 0px;"><input value='Heavy Duty Lathe' class="form-check-input hex2" type="checkbox" id="rhdl" style="width: 60px;"><label class="form-check-label" for="rhdl" style="padding-left: 25px;">Heavy Duty Lathe<br></label></div>
-                        <div class="form-check" style="padding-left: 0px;"><input value='Grinding Machine' class="form-check-input hex2" type="checkbox" id="rgm" style="width: 60px;"><label class="form-check-label" for="rgm" style="padding-left: 25px;">Grinding Machine<br></label></div>
-                        <div class="form-check" style="padding-left: 0px;"><input value='Milling Machine' class="form-check-input hex2" type="checkbox" id="rmm" style="width: 60px;"><label class="form-check-label" for="rmm" style="padding-left: 25px;">Milling Machine<br></label></div>
-                        <p></p>
-                        <input type="text" id='hexid2' name="resources">
-                        <p></p>
-                        <p><strong>Your Already Selected 'Resources' : </strong>{{ data.resources }}</p>
-                        <button class="btn btn-primary" type="submit" style="width: 200px;">Update Resources</button
-                        <hr/>
-                        </form>
-                    </div>
-                </div>
-
-        </div>
-    </div> -->
-    <!-- </form> -->
     </div>
 {% endblock %}

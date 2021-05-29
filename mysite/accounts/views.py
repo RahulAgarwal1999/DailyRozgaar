@@ -34,7 +34,7 @@ def registeruser(request):
 
                 send_mail(
                             'Daily Rozgaar',
-                            'Thank you '+ first_name + last_name + ' for showing interest in our website. You have been successfully registered. Feel free to call for any house help and avail our facilities at a rational price !',
+                            'Thank you '+ first_name + ' ' + last_name + ' for showing interest in our website. You have been successfully registered. Feel free to call for any house help and avail our facilities at a rational price !',
                             'aayushmahajan950@gmail.com',
                             [email],
                             fail_silently = False
@@ -72,12 +72,12 @@ def registerworker(request):
                 user.save()
 
                 u_id = User.objects.get(username=username)
-                addusr = WorkerDetails(user_id=u_id,number=number,job=job,cardtype=cardtype,cardnumber=cardnumber,state=state)
+                addusr = WorkerDetails(user_id=u_id,number=number,job=job,cardtype=cardtype,cardnumber=cardnumber,state=state,email=email)
                 addusr.save()
 
                 send_mail(
                             'Daily Rozgaar',
-                            'Thank you '+ first_name + last_name + ' for showing interest in our website. You have been successfully registered. If any possible work comes for you it will be displayed in you dashboard !',
+                            'Thank you '+ first_name + ' ' + last_name + ' for showing interest in our website. You have been successfully registered. If any possible work comes for you it will be displayed in your dashboard !',
                             'aayushmahajan950@gmail.com',
                             [email],
                             fail_silently = False
@@ -243,6 +243,10 @@ def dashboarduser(request):
 
         print(get_worker_id)
 
+        if(len(get_worker_id)==0):
+            messages.success(request,'No suitable helper available right now ! Please try again later.')
+            return redirect(request.path_info)
+
         rand_idx = random.randrange(len(get_worker_id))
         print('Index',rand_idx)
         random_id = get_worker_id[rand_idx]
@@ -252,15 +256,19 @@ def dashboarduser(request):
         data.alloted_worker=random_id
         data.save()
 
+
         history.alloted_worker=random_id
         history.save()
 
-        # Email to worker who has been alloted
-
-
-
-
-
+        data2 = WorkerDetails.objects.get(user_id__username = random_id)
+        sendingtoworkeremail = data2.email
+        send_mail(
+            'Daily Rozgaar',
+            'We bring good news ! You have been allotted a job as per your description. The address for is : ' + addressl1 + ' ,' + addressl2 + ' ,' + city + '-' + state + ' . The time scheduled is ' + time + ' . And some additional description has been provided : '+  adetails + ' . Feel free to call on 901******2 for clarification. ',
+            'aayushmahajan950@gmail.com',
+            [sendingtoworkeremail],
+            fail_silently = False
+        )
 
         return redirect(request.path_info)
 
@@ -340,7 +348,12 @@ def dashboardworker(request):
         return render(request,'accounts/dashboardworker.html',context)
 
 def accountsettingsworker(request):
-    return render(request,'accounts/accountsettingsworker.html')
+    user = request.user
+    data = WorkerDetails.objects.get(user_id=user)
+    context = {
+        'data':data
+    }
+    return render(request,'accounts/accountsettingsworker.html',context)
 
 
 @login_required
